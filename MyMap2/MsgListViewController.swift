@@ -70,6 +70,7 @@ class MsgListViewController: UIViewController, UITableViewDataSource {
                     self.getMainArray.append(self.getArray)
                     self.getArray = [String]()
                     print(self.getMainArray)
+                    print(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
                 }
                 //部屋が自分を含む場合配列に追加する処理end
             }
