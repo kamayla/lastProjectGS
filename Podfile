@@ -11,5 +11,7 @@ target 'MyMap2' do
   pod 'Firebase/Core'
   pod 'Firebase/Firestore’
   pod 'Firebase/Storage'
+  pod 'FirebaseUI/Storage'
+  pod 'SDWebImage'
 
 end

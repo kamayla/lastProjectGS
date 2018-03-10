@@ -26,6 +26,7 @@
 		7251DC722045301400931022 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7251DC712045301400931022 /* SignUpViewController.swift */; };
 		728999B62052E26B00D87F79 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728999B52052E26B00D87F79 /* TopViewController.swift */; };
 		728999B82052E7AC00D87F79 /* CustomCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728999B72052E7AC00D87F79 /* CustomCellCollectionViewCell.swift */; };
+		728999BB2053976900D87F79 /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728999BA2053976900D87F79 /* ShopDetailViewController.swift */; };
 		72A76041203554EF00A5E84D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72A76040203554EF00A5E84D /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		7251DC712045301400931022 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		728999B52052E26B00D87F79 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		728999B72052E7AC00D87F79 /* CustomCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		728999BA2053976900D87F79 /* ShopDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
 		72A76040203554EF00A5E84D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7BF29E0260E9AD7167CB0047 /* Pods-MyMap2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMap2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyMap2/Pods-MyMap2.debug.xcconfig"; sourceTree = "<group>"; };
 		CA3A73BD5EF6ECAE648B932A /* Pods_MyMap2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyMap2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +128,7 @@
 			children = (
 				728999B52052E26B00D87F79 /* TopViewController.swift */,
 				728999B72052E7AC00D87F79 /* CustomCellCollectionViewCell.swift */,
+				728999BA2053976900D87F79 /* ShopDetailViewController.swift */,
 				72354260202ECA860039E385 /* Main.storyboard */,
 			);
 			path = Logicom;
@@ -256,6 +259,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
@@ -269,6 +273,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
@@ -299,6 +304,7 @@
 				7235425F202ECA860039E385 /* ViewController.swift in Sources */,
 				728999B82052E7AC00D87F79 /* CustomCellCollectionViewCell.swift in Sources */,
 				7235425D202ECA860039E385 /* AppDelegate.swift in Sources */,
+				728999BB2053976900D87F79 /* ShopDetailViewController.swift in Sources */,
 				7251DC7020452F1C00931022 /* LoginViewController.swift in Sources */,
 				7251DC45204451F900931022 /* MyMKPointAnnotation.swift in Sources */,
 			);

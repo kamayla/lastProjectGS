@@ -154,6 +154,7 @@ class DetailViewController: UIViewController {
         // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
         islandRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
             print(data as Any)
+            print("aaaa")
             if let error = error {
                 print("だめだこりゃ\(error)")
                 // Uh-oh, an error occurred!
