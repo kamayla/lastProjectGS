@@ -24,6 +24,8 @@
 		7251DC6E20452E3F00931022 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7251DC6D20452E3F00931022 /* GoogleService-Info.plist */; };
 		7251DC7020452F1C00931022 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7251DC6F20452F1C00931022 /* LoginViewController.swift */; };
 		7251DC722045301400931022 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7251DC712045301400931022 /* SignUpViewController.swift */; };
+		728999B62052E26B00D87F79 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728999B52052E26B00D87F79 /* TopViewController.swift */; };
+		728999B82052E7AC00D87F79 /* CustomCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728999B72052E7AC00D87F79 /* CustomCellCollectionViewCell.swift */; };
 		72A76041203554EF00A5E84D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72A76040203554EF00A5E84D /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +48,8 @@
 		7251DC6D20452E3F00931022 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7251DC6F20452F1C00931022 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7251DC712045301400931022 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		728999B52052E26B00D87F79 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
+		728999B72052E7AC00D87F79 /* CustomCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		72A76040203554EF00A5E84D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7BF29E0260E9AD7167CB0047 /* Pods-MyMap2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMap2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyMap2/Pods-MyMap2.debug.xcconfig"; sourceTree = "<group>"; };
 		CA3A73BD5EF6ECAE648B932A /* Pods_MyMap2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyMap2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,8 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				7235425C202ECA860039E385 /* AppDelegate.swift */,
+				728999B92052EE0E00D87F79 /* Logicom */,
 				7235425E202ECA860039E385 /* ViewController.swift */,
-				72354260202ECA860039E385 /* Main.storyboard */,
 				7251DC712045301400931022 /* SignUpViewController.swift */,
 				72379BB420490E4700809101 /* ChatViewController.swift */,
 				7251DC44204451F900931022 /* MyMKPointAnnotation.swift */,
@@ -115,6 +119,16 @@
 				CA3A73BD5EF6ECAE648B932A /* Pods_MyMap2.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		728999B92052EE0E00D87F79 /* Logicom */ = {
+			isa = PBXGroup;
+			children = (
+				728999B52052E26B00D87F79 /* TopViewController.swift */,
+				728999B72052E7AC00D87F79 /* CustomCellCollectionViewCell.swift */,
+				72354260202ECA860039E385 /* Main.storyboard */,
+			);
+			path = Logicom;
 			sourceTree = "<group>";
 		};
 		8F757671C018DDDB0877DB23 /* Pods */ = {
@@ -274,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				728999B62052E26B00D87F79 /* TopViewController.swift in Sources */,
 				7251DC722045301400931022 /* SignUpViewController.swift in Sources */,
 				72379BAD2047BFF000809101 /* GirlMKPointAnnotation.swift in Sources */,
 				72379BB520490E4700809101 /* ChatViewController.swift in Sources */,
@@ -282,6 +297,7 @@
 				7251DC3F2044400600931022 /* DetailViewController.swift in Sources */,
 				72379BB12047CFBC00809101 /* MyMKPinAnnotationView.swift in Sources */,
 				7235425F202ECA860039E385 /* ViewController.swift in Sources */,
+				728999B82052E7AC00D87F79 /* CustomCellCollectionViewCell.swift in Sources */,
 				7235425D202ECA860039E385 /* AppDelegate.swift in Sources */,
 				7251DC7020452F1C00931022 /* LoginViewController.swift in Sources */,
 				7251DC45204451F900931022 /* MyMKPointAnnotation.swift in Sources */,
