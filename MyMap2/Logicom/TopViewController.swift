@@ -52,6 +52,7 @@ class TopViewController: UIViewController, UICollectionViewDelegate, UICollectio
                     self.shopArray.append(dic["name"] as Any)
                     self.shopArray.append(dic["place"] as Any)
                     self.shopArray.append(storage.child("shopimg/\(document.documentID)/\(dic["image"] as! String)"))
+                    self.shopArray.append(document.documentID)
                     print(self.shopArray)
                     self.shopsArray.append(self.shopArray)
                     self.shopArray = [Any]()
@@ -89,19 +90,15 @@ class TopViewController: UIViewController, UICollectionViewDelegate, UICollectio
                 cell.img.sd_setImage(with: url)
             }
         }
-        
-        
-        
-        
         return cell
-    
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let indexPath = self.shopitems.indexPathsForSelectedItems {
-            print(indexPath[0][1])
             let vc = segue.destination as! ShopDetailViewController
-            vc.testText = String(indexPath[0][1])
+            vc.shopName = shopsArray[indexPath[0][1]][0] as! String
+            vc.shopID = shopsArray[indexPath[0][1]][3] as! String
+            vc.imgRef = shopsArray[indexPath[0][1]][2] as! StorageReference
         }
     }
 

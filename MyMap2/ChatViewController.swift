@@ -12,9 +12,6 @@ import FirebaseAuth
 
 class ChatViewController: UIViewController, UITableViewDataSource {
     
-    
-    
-    
     //グローバル変数宣言
     var roomNumber: String!
     var ref: DatabaseReference!
@@ -24,17 +21,6 @@ class ChatViewController: UIViewController, UITableViewDataSource {
     var getMainArray = [[String]]()
     var myName = "名無し"
     //グローバル変数宣言end
-    
-    
-    //テスト変数＊＊？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？
-    
-    
-    
-    //テスト変数＊＊？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？
-    
-    
-    
-    
     
     //IBOutlet宣言
     @IBOutlet weak var chatToolbar: UIToolbar!
@@ -157,6 +143,7 @@ class ChatViewController: UIViewController, UITableViewDataSource {
         let msg = cell.contentView.viewWithTag(2) as! UILabel
         
 //        name.text = getMainArray[indexPath.row][0]
+        
         msg.text = getMainArray[indexPath.row][1]
         
         //もし自分だったら右寄せ
@@ -173,6 +160,7 @@ class ChatViewController: UIViewController, UITableViewDataSource {
 //        }
         return cell
     }
+    
     //tablevie関連メソッドend
     
     
