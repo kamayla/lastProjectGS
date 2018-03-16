@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import SDWebImage
+import FirebaseAuth
 
 
 class TopViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -18,12 +19,18 @@ class TopViewController: UIViewController, UICollectionViewDelegate, UICollectio
     var defaultStore : Firestore!
     var shopsArray = [[Any]]()
     var shopArray = [Any]()
+    var cartNow = [[String:Any]]()
+    var user: User!
+    var ref: DatabaseReference!
     //グローバル変数宣言end
     
     
     
     //IBOutlet宣言
     @IBOutlet weak var shopitems: UICollectionView!
+    @IBOutlet weak var cartLookArea: UIView!
+    @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var paySumLabel: UILabel!
     //IBOutlet宣言end
     
     
@@ -33,6 +40,8 @@ class TopViewController: UIViewController, UICollectionViewDelegate, UICollectio
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        user = Auth.auth().currentUser
+        ref = Database.database().reference()
         shopitems.dataSource = self
         self.shopitems.layer.borderColor = UIColor.gray.cgColor
         self.shopitems.layer.borderWidth = 1
@@ -64,6 +73,25 @@ class TopViewController: UIViewController, UICollectionViewDelegate, UICollectio
         }
         
         //お店の情報をfirestoreから取得end
+        
+        //firebaseからcarts情報を取得
+        self.ref.child("carts").child(user.uid).observe(.value) { (snapshot) in
+            self.cartNow = [[String:Any]]()
+            for item in snapshot.children {
+                let child = item as! DataSnapshot
+                let array = child.value as! NSArray
+                for arrayChild in array {
+                    self.cartNow.append(arrayChild as! [String:Any])
+                    print(arrayChild as! [String:Any])
+                }
+            }
+            if self.cartNow.count > 0 {
+                self.cartLookArea.isHidden = false
+            }else {
+                self.cartLookArea.isHidden = true
+            }
+            self.totalOutput()
+        }
 
     }
 
@@ -94,12 +122,32 @@ class TopViewController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let indexPath = self.shopitems.indexPathsForSelectedItems {
-            let vc = segue.destination as! ShopDetailViewController
-            vc.shopName = shopsArray[indexPath[0][1]][0] as! String
-            vc.shopID = shopsArray[indexPath[0][1]][3] as! String
-            vc.imgRef = shopsArray[indexPath[0][1]][2] as! StorageReference
+        if segue.identifier == "goCart" {
+            
+        }else {
+            if let indexPath = self.shopitems.indexPathsForSelectedItems {
+                let vc = segue.destination as! ShopDetailViewController
+                vc.shopName = shopsArray[indexPath[0][1]][0] as! String
+                vc.shopID = shopsArray[indexPath[0][1]][3] as! String
+                vc.imgRef = shopsArray[indexPath[0][1]][2] as! StorageReference
+            }
         }
     }
+    
+    func totalOutput() {
+        var sumQuantity = 0
+        var sumPay = 0
+        for i in cartNow {
+            sumQuantity += i["quantity"] as! Int
+            sumPay += (i["price"] as! Int) * (i["quantity"] as! Int)
+        }
+        quantityLabel.text = String(sumQuantity)
+        paySumLabel.text = "¥\(String(sumPay))"
+    }
+    
+    @IBAction func tappedCartGo(_ sender: Any) {
+        performSegue(withIdentifier: "goCart", sender: nil)
+    }
+    
 
 }

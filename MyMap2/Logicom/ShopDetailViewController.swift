@@ -10,30 +10,42 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import SDWebImage
+import FirebaseAuth
 
 class ShopDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     
     //グローバル変数宣言
+    var user: User!
     var shopName: String!
     var shopID: String!
     var imgRef: StorageReference!
     var defaultStore : Firestore!
     var categoryArray = [Any]()
     var categorysArray = [[Any]]()
+    var ref: DatabaseReference!
+    var cartNow = [[String:Any]]()
     //グローバル変数宣言end
+    
     
     //IBOutlet宣言
     @IBOutlet weak var shopNameLabel: UILabel!
     @IBOutlet weak var menuTableView: UITableView!
     @IBOutlet weak var shopImage: UIImageView!
+    @IBOutlet weak var cartLookArea: UIView!
+    @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var paySumLabel: UILabel!
     //IBOutlet宣言end
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.ref = Database.database().reference()
+        user = Auth.auth().currentUser
         menuTableView.dataSource = self
         shopNameLabel.text = shopName
         
@@ -78,6 +90,26 @@ class ShopDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             print(self.categorysArray)
             self.menuTableView.reloadData()
         }
+        
+        //firebaseからcarts情報を取得
+        self.ref.child("carts").child(user.uid).observe(.value) { (snapshot) in
+            self.cartNow = [[String:Any]]()
+            for item in snapshot.children {
+                let child = item as! DataSnapshot
+                let array = child.value as! NSArray
+                for arrayChild in array {
+                    self.cartNow.append(arrayChild as! [String:Any])
+                    print(arrayChild as! [String:Any])
+                }
+            }
+            if self.cartNow.count > 0 {
+                self.cartLookArea.isHidden = false
+            }else {
+                self.cartLookArea.isHidden = true
+            }
+            self.totalOutput()
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,26 +140,35 @@ class ShopDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let indexPath = self.menuTableView.indexPathForSelectedRow{
-            let cell = self.menuTableView.cellForRow(at:indexPath) as! CustomTableViewCell
-            let vc = segue.destination as! ItemsViewController
-            vc.shopID = self.shopID
-            vc.imgRef = self.imgRef
-            vc.shopName = self.shopName
-            vc.category = self.categorysArray[indexPath.row][0] as! String
-            vc.categoryCell = cell
+        if segue.identifier == "goCart" {
+            
+        }else {
+            if let indexPath = self.menuTableView.indexPathForSelectedRow{
+                let cell = self.menuTableView.cellForRow(at:indexPath) as! CustomTableViewCell
+                let vc = segue.destination as! ItemsViewController
+                vc.shopID = self.shopID
+                vc.imgRef = self.imgRef
+                vc.shopName = self.shopName
+                vc.category = self.categorysArray[indexPath.row][0] as! String
+                vc.categoryCell = cell
+            }
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func totalOutput() {
+        var sumQuantity = 0
+        var sumPay = 0
+        for i in cartNow {
+            sumQuantity += i["quantity"] as! Int
+            sumPay += (i["price"] as! Int) * (i["quantity"] as! Int)
+        }
+        quantityLabel.text = String(sumQuantity)
+        paySumLabel.text = "¥\(String(sumPay))"
     }
-    */
+
+    @IBAction func tappedCartGo(_ sender: Any) {
+        performSegue(withIdentifier: "goCart", sender: nil)
+    }
+    
 
 }

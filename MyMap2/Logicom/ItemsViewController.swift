@@ -10,36 +10,43 @@ import UIKit
 import Firebase
 import FirebaseStorage
 import SDWebImage
+import FirebaseAuth
 
 class ItemsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-    
-    
-   
-    
-    
+
     //グローバル変数宣言
+    var user: User!
     var shopName: String!
     var shopID: String!
     var category: String!
+    var ref: DatabaseReference!
     var imgRef: StorageReference!
     var defaultStore : Firestore!
     var categoryCell: CustomTableViewCell!
     var product = [Any]()
     var products = [[Any]]()
+    var willCart = [[String:Any]]()
     //グローバル変数宣言end
     
+    
     //IBOutlet宣言
-    @IBOutlet weak var itemsTableVlew: UITableView!
+    @IBOutlet weak var itemsTableView: UITableView!
     @IBOutlet weak var shopNameLabel: UILabel!
     @IBOutlet weak var shopImage: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var cartInQuantity: UILabel!
+    @IBOutlet weak var cartInSum: UILabel!
+    @IBOutlet weak var cartInArea: UIView!
     //IBOutlet宣言end
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        itemsTableVlew.dataSource = self
+        user = Auth.auth().currentUser
+        ref = Database.database().reference()
+        itemsTableView.allowsSelection = false
+        itemsTableView.dataSource = self
         shopNameLabel.text = shopName
         categoryLabel.text = category
         //SDWebImageライブラリで画像を描画
@@ -50,7 +57,6 @@ class ItemsViewController: UIViewController,UITableViewDelegate,UITableViewDataS
                 self.shopImage.sd_setImage(with: url)
             }
         }
-        
         
         
         if let items = categoryCell.items {
@@ -68,6 +74,19 @@ class ItemsViewController: UIViewController,UITableViewDelegate,UITableViewDataS
             }
         }
         
+//        ref.child("cars/\(user.uid)").observeSingleEvent(of: .value) { (snapshot) in
+//            for items in snapshot.children {
+//                let child = items as! DataSnapshot
+//                let array = child.value as! NSArray
+//
+//                for willdic in array {
+//                    let dic = willdic as! NSDictionary
+//                    print(dic)
+//                    self.willCart.append(dic as! [String : Any])
+//                }
+//            }
+//        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,16 +102,25 @@ class ItemsViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         return self.products.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = itemsTableVlew.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ItemsTableViewCell
+        let cell = itemsTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ItemsTableViewCell
         cell.itemNameLabel.text = self.products[indexPath.row][0] as? String
         cell.priceLabel.text = "¥\(String(describing: self.products[indexPath.row][1]))"
         cell.price = self.products[indexPath.row][1] as! Int
-        cell.price = self.products[indexPath.row][2] as! Int
+        cell.quantity = self.products[indexPath.row][2] as! Int
+        cell.name = self.products[indexPath.row][0] as! String
+        cell.OwnItemsViewController = self
+        
         return cell
     }
     
-
+    @IBAction func tappedCartInArea(_ sender: Any) {
+        ref.child("carts").child(user.uid).childByAutoId().setValue(self.willCart)
+        self.dismiss(animated: true, completion:nil)
+        print("cartに入れるよ！！\(willCart)")
+    }
+    
     
     
     /*
