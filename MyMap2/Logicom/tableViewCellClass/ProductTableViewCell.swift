@@ -38,16 +38,12 @@ class ProductTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     @IBAction func tappedGoTrash(_ sender: Any) {
-        CartViewController.cartTableView.reloadData()
         var data = [[String:Any]]()
         ref.child("carts").child(userID).child(orderKey).observeSingleEvent(of: .value) { (snapshot) in
             for item in snapshot.children {
                 let child = item as! DataSnapshot
-                print(child.value! as! [String:Any])
-                print(child.key)
                 if Int(child.key) != self.indexNum {
                     data.append(child.value! as! [String:Any])
-                    print("aaaaaaaaaaaaaaaaaaa\(data)")
                 }
             }
             self.ref.child("carts/\(self.userID!)/\(self.orderKey!)").setValue(data)

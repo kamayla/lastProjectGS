@@ -24,11 +24,6 @@ class CartViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     let sendPay = 380
     //グローバル変数宣言end
     
-    
-    
-    
-    
-    
     //IBOutlet宣言
     @IBOutlet weak var cartTableView: UITableView!
     //IBOutlet宣言end
@@ -37,6 +32,13 @@ class CartViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         cartTableView.dataSource = self
         cartTableView.delegate = self
         user = Auth.auth().currentUser
+        
+        if let tableView = self.cartTableView {
+            tableView.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "cell1")
+            tableView.register(UINib(nibName: "PaySumTableViewCell", bundle: nil), forCellReuseIdentifier: "cell2")
+        }
+        
+        
         ref = Database.database().reference()
         
         //firebaseからcarts情報を取得
@@ -51,7 +53,6 @@ class CartViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     arrayChildDic.updateValue(self.user.uid, forKey: "userID")
                     arrayChildDic.updateValue(array.index(of: arrayChild), forKey: "indexNum")
                     self.cartNow.append(arrayChildDic)
-                    print("辞書型テストしてます\(arrayChildDic)")
                 }
             }
             
@@ -64,54 +65,54 @@ class CartViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         // Dispose of any resources that can be recreated.
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("バグ調べ\(self.cartNow.count)")
         if section == 0 {
+            
             return cartNow.count
         } else if section == 1 {
+            
             return 1
         } else {
             return 0
         }
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell = UITableViewCell()
-        if indexPath.section == 0 {
-            self.cartTableView.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-            cell = cartTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProductTableViewCell
-            (cell as! ProductTableViewCell).name.text = self.cartNow[indexPath.row]["name"] as? String
-            (cell as! ProductTableViewCell).price.text = "¥\(String(self.cartNow[indexPath.row]["price"] as! Int))"
-            (cell as! ProductTableViewCell).quantity.text = String(self.cartNow[indexPath.row]["quantity"] as! Int)
-            (cell as! ProductTableViewCell).orderKey = self.cartNow[indexPath.row]["orderKey"] as! String
-            (cell as! ProductTableViewCell).userID = self.cartNow[indexPath.row]["userID"] as! String
-            (cell as! ProductTableViewCell).indexNum = self.cartNow[indexPath.row]["indexNum"] as! Int
-            (cell as! ProductTableViewCell).CartViewController = self
-        } else if indexPath.section == 1 {
-            self.cartTableView.register(UINib(nibName: "PaySumTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-            cell = cartTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PaySumTableViewCell
+        
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! ProductTableViewCell
+            cell.name.text = self.cartNow[indexPath.row]["name"] as? String
+            cell.price.text = "¥\(String(self.cartNow[indexPath.row]["price"] as! Int))"
+            cell.quantity.text = String(self.cartNow[indexPath.row]["quantity"] as! Int)
+            cell.orderKey = self.cartNow[indexPath.row]["orderKey"] as! String
+            cell.userID = self.cartNow[indexPath.row]["userID"] as! String
+            cell.indexNum = self.cartNow[indexPath.row]["indexNum"] as! Int
+            cell.CartViewController = self
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! PaySumTableViewCell
             var paySum = 0
             for i in self.cartNow {
                 paySum += (i["price"] as! Int) * (i["quantity"] as! Int)
             }
-            (cell as! PaySumTableViewCell).paySumLabel.text = "¥\(paySum)"
-            (cell as! PaySumTableViewCell).paySendLabel.text = "¥\(self.sendPay)"
-            (cell as! PaySumTableViewCell).totalLabel.text = "¥\(paySum + self.sendPay)"
-        }
-        
-        
-        
-        
-        if let cell = cell as? ProductTableViewCell {
+            cell.paySumLabel.text = "¥\(paySum)"
+            cell.paySendLabel.text = "¥\(self.sendPay)"
+            cell.totalLabel.text = "¥\(paySum + self.sendPay)"
             return cell
-        } else if let cell = cell as? PaySumTableViewCell {
-            return cell
-        } else {
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             return cell
         }
+        
+
     }
     
     @IBAction func tappedClose(_ sender: Any) {
