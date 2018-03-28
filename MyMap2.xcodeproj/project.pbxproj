@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		5CC13DF882D00586D5D3DBC1 /* Pods_MyMap2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3A73BD5EF6ECAE648B932A /* Pods_MyMap2.framework */; };
+		72274DCF2067DC5800704F30 /* AcountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72274DCE2067DC5800704F30 /* AcountTableViewCell.swift */; };
+		722CD5332067E67100DD6053 /* AcountEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722CD5322067E67100DD6053 /* AcountEditViewController.swift */; };
 		722FB2A0205BAD6A00E1E906 /* PaySumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722FB29E205BAD6A00E1E906 /* PaySumTableViewCell.swift */; };
 		722FB2A1205BAD6A00E1E906 /* PaySumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 722FB29F205BAD6A00E1E906 /* PaySumTableViewCell.xib */; };
 		72327B9D206215C4005BB860 /* AkaMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72327B9C206215C4005BB860 /* AkaMenuViewController.swift */; };
 		72327B9F2062197E005BB860 /* PayEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72327B9E2062197E005BB860 /* PayEditViewController.swift */; };
 		72327BA120621992005BB860 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72327BA020621992005BB860 /* EditViewController.swift */; };
+		72327BA320623585005BB860 /* EditDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72327BA220623585005BB860 /* EditDetailViewController.swift */; };
 		7235425D202ECA860039E385 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7235425C202ECA860039E385 /* AppDelegate.swift */; };
 		7235425F202ECA860039E385 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7235425E202ECA860039E385 /* ViewController.swift */; };
 		72354262202ECA860039E385 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72354260202ECA860039E385 /* Main.storyboard */; };
@@ -42,11 +45,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		72274DCE2067DC5800704F30 /* AcountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcountTableViewCell.swift; sourceTree = "<group>"; };
+		722CD5322067E67100DD6053 /* AcountEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcountEditViewController.swift; sourceTree = "<group>"; };
 		722FB29E205BAD6A00E1E906 /* PaySumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaySumTableViewCell.swift; sourceTree = "<group>"; };
 		722FB29F205BAD6A00E1E906 /* PaySumTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaySumTableViewCell.xib; sourceTree = "<group>"; };
 		72327B9C206215C4005BB860 /* AkaMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkaMenuViewController.swift; sourceTree = "<group>"; };
 		72327B9E2062197E005BB860 /* PayEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayEditViewController.swift; sourceTree = "<group>"; };
 		72327BA020621992005BB860 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		72327BA220623585005BB860 /* EditDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailViewController.swift; sourceTree = "<group>"; };
 		72354259202ECA860039E385 /* MyMap2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMap2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7235425C202ECA860039E385 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7235425E202ECA860039E385 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -151,14 +157,17 @@
 				728999B52052E26B00D87F79 /* TopViewController.swift */,
 				728999B72052E7AC00D87F79 /* CustomCellCollectionViewCell.swift */,
 				729DB6122054ED660047834E /* CustomTableViewCell.swift */,
+				72274DCE2067DC5800704F30 /* AcountTableViewCell.swift */,
 				72327B9C206215C4005BB860 /* AkaMenuViewController.swift */,
 				729339C3205BA3FF009589D9 /* tableViewCellClass */,
 				728999BA2053976900D87F79 /* ShopDetailViewController.swift */,
 				729DB6162055115F0047834E /* ItemsTableViewCell.swift */,
 				729DB614205504230047834E /* ItemsViewController.swift */,
+				722CD5322067E67100DD6053 /* AcountEditViewController.swift */,
 				72327B9E2062197E005BB860 /* PayEditViewController.swift */,
 				72327BA020621992005BB860 /* EditViewController.swift */,
 				72354260202ECA860039E385 /* Main.storyboard */,
+				72327BA220623585005BB860 /* EditDetailViewController.swift */,
 				729339C8205BA5C1009589D9 /* CartViewController.swift */,
 			);
 			path = Logicom;
@@ -336,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				722CD5332067E67100DD6053 /* AcountEditViewController.swift in Sources */,
 				72327B9D206215C4005BB860 /* AkaMenuViewController.swift in Sources */,
 				728999B62052E26B00D87F79 /* TopViewController.swift in Sources */,
 				7251DC722045301400931022 /* SignUpViewController.swift in Sources */,
@@ -345,11 +355,13 @@
 				72379BB320490E1C00809101 /* MsgListViewController.swift in Sources */,
 				729DB615205504230047834E /* ItemsViewController.swift in Sources */,
 				72379B8B2046459B00809101 /* ProfileEditViewController.swift in Sources */,
+				72327BA320623585005BB860 /* EditDetailViewController.swift in Sources */,
 				729DB6132054ED660047834E /* CustomTableViewCell.swift in Sources */,
 				729339C9205BA5C1009589D9 /* CartViewController.swift in Sources */,
 				722FB2A0205BAD6A00E1E906 /* PaySumTableViewCell.swift in Sources */,
 				7251DC3F2044400600931022 /* DetailViewController.swift in Sources */,
 				72379BB12047CFBC00809101 /* MyMKPinAnnotationView.swift in Sources */,
+				72274DCF2067DC5800704F30 /* AcountTableViewCell.swift in Sources */,
 				729339C6205BA47A009589D9 /* ProductTableViewCell.swift in Sources */,
 				7235425F202ECA860039E385 /* ViewController.swift in Sources */,
 				72327BA120621992005BB860 /* EditViewController.swift in Sources */,

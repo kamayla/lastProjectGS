@@ -26,6 +26,7 @@ class CartViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     //IBOutlet宣言
     @IBOutlet weak var cartTableView: UITableView!
+    @IBOutlet weak var sendArea: UILabel!
     //IBOutlet宣言end
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,6 @@ class CartViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         
         ref = Database.database().reference()
-        
         //firebaseからcarts情報を取得
         self.ref.child("carts").child(user.uid).observe(.value) { (snapshot) in
             self.cartNow = [[String:Any]]()
@@ -57,6 +57,13 @@ class CartViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             }
             
             self.cartTableView.reloadData()
+        }
+        
+        defaultStore = Firestore.firestore()
+        defaultStore.collection("UserProfile").document(user.uid).getDocument { (document, err) in
+            if let dic = document!.data() {
+                self.sendArea.text = dic["address"] as? String
+            }
         }
     }
 

@@ -29,13 +29,23 @@ class EditViewController: UIViewController {
         
         defaultStore.collection("UserProfile").document(user.uid).getDocument { (snapshot, err) in
             if let dic = snapshot!.data() {
-                self.userNameLabel.text = (dic["name"] as! String)
+                self.userNameLabel.text = (dic["name"] as? String)
             } else {
                 print("データがねぇよ")
             }
         }
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        defaultStore.collection("UserProfile").document(user.uid).getDocument { (snapshot, err) in
+            if let dic = snapshot!.data() {
+                self.userNameLabel.text = (dic["name"] as? String)
+            } else {
+                print("データがねぇよ")
+            }
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
