@@ -122,6 +122,10 @@ class MsgListViewController: UIViewController, UITableViewDataSource {
     
     
 
+    @IBAction func tappedClose(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
 
     /*

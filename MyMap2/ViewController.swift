@@ -47,6 +47,8 @@ class ViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        
         let ref = defaultStore.collection("UserProfile").document(user.uid)
         ref.getDocument { (document, error) in
             if let dic = document!.data() {
@@ -76,7 +78,6 @@ class ViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDe
         // Do any additional setup after loading the view, typically from a nib.
         defaultStore = Firestore.firestore()
         user = Auth.auth().currentUser
-        ckoutButton.isEnabled = false
         ref = Database.database().reference()
         
 
@@ -98,8 +99,6 @@ class ViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDe
                     if self.myPlace != nil {
                         self.displayMap.removeAnnotation(self.myPlace)
                     }
-                    self.ckinButton.isEnabled = false
-                    self.ckoutButton.isEnabled = true
                     self.myPlace = MyMKPointAnnotation()
                     let y = dic["latitude"] as! Double
                     let x = dic["longitude"] as! Double
@@ -131,15 +130,17 @@ class ViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDe
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        
-
+        //現在地の座標を変数centerに取得
+        let center = myLocationManager.location!.coordinate
+        //マップをcenterに移動させる。
+        displayMap.region = MKCoordinateRegionMakeWithDistance(center, 2000.0, 2000.0)
+        myLocationManager.stopUpdatingLocation()
     }
     
 
         
     @IBAction func tappedNow(_ sender: Any) {
-        self.displayMap.region = MKCoordinateRegionMakeWithDistance(myLocationManager.location!.coordinate,500.0,500.0)
+        self.displayMap.region = MKCoordinateRegionMakeWithDistance(myLocationManager.location!.coordinate, 2000.0, 2000.0)
         
     }
     

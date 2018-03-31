@@ -8,7 +8,10 @@
 
 import UIKit
 import MapKit
+import Firebase
 
 class GirlMKPointAnnotation: MKPointAnnotation {
     var userID: String!
+    
+    
 }

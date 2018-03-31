@@ -10,6 +10,8 @@
 		5CC13DF882D00586D5D3DBC1 /* Pods_MyMap2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3A73BD5EF6ECAE648B932A /* Pods_MyMap2.framework */; };
 		72274DCF2067DC5800704F30 /* AcountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72274DCE2067DC5800704F30 /* AcountTableViewCell.swift */; };
 		722CD5332067E67100DD6053 /* AcountEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722CD5322067E67100DD6053 /* AcountEditViewController.swift */; };
+		722DC90F206E2067007CB4EE /* OrderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722DC90E206E2067007CB4EE /* OrderListTableViewCell.swift */; };
+		722DC911206FA56B007CB4EE /* ChatComeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722DC910206FA56B007CB4EE /* ChatComeTableViewCell.swift */; };
 		722FB2A0205BAD6A00E1E906 /* PaySumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722FB29E205BAD6A00E1E906 /* PaySumTableViewCell.swift */; };
 		722FB2A1205BAD6A00E1E906 /* PaySumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 722FB29F205BAD6A00E1E906 /* PaySumTableViewCell.xib */; };
 		72327B9D206215C4005BB860 /* AkaMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72327B9C206215C4005BB860 /* AkaMenuViewController.swift */; };
@@ -42,11 +44,14 @@
 		729DB615205504230047834E /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729DB614205504230047834E /* ItemsViewController.swift */; };
 		729DB6172055115F0047834E /* ItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729DB6162055115F0047834E /* ItemsTableViewCell.swift */; };
 		72A76041203554EF00A5E84D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72A76040203554EF00A5E84D /* CoreLocation.framework */; };
+		72BFFC72206D239100AF97FE /* OrderCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BFFC71206D239100AF97FE /* OrderCheckViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		72274DCE2067DC5800704F30 /* AcountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcountTableViewCell.swift; sourceTree = "<group>"; };
 		722CD5322067E67100DD6053 /* AcountEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcountEditViewController.swift; sourceTree = "<group>"; };
+		722DC90E206E2067007CB4EE /* OrderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListTableViewCell.swift; sourceTree = "<group>"; };
+		722DC910206FA56B007CB4EE /* ChatComeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatComeTableViewCell.swift; sourceTree = "<group>"; };
 		722FB29E205BAD6A00E1E906 /* PaySumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaySumTableViewCell.swift; sourceTree = "<group>"; };
 		722FB29F205BAD6A00E1E906 /* PaySumTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaySumTableViewCell.xib; sourceTree = "<group>"; };
 		72327B9C206215C4005BB860 /* AkaMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkaMenuViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +86,7 @@
 		729DB614205504230047834E /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		729DB6162055115F0047834E /* ItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsTableViewCell.swift; sourceTree = "<group>"; };
 		72A76040203554EF00A5E84D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		72BFFC71206D239100AF97FE /* OrderCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCheckViewController.swift; sourceTree = "<group>"; };
 		7BF29E0260E9AD7167CB0047 /* Pods-MyMap2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMap2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyMap2/Pods-MyMap2.debug.xcconfig"; sourceTree = "<group>"; };
 		CA3A73BD5EF6ECAE648B932A /* Pods_MyMap2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyMap2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED711D8B3ECFE000E62CE78 /* Pods-MyMap2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMap2.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyMap2/Pods-MyMap2.release.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +164,7 @@
 				728999B72052E7AC00D87F79 /* CustomCellCollectionViewCell.swift */,
 				729DB6122054ED660047834E /* CustomTableViewCell.swift */,
 				72274DCE2067DC5800704F30 /* AcountTableViewCell.swift */,
+				72BFFC71206D239100AF97FE /* OrderCheckViewController.swift */,
 				72327B9C206215C4005BB860 /* AkaMenuViewController.swift */,
 				729339C3205BA3FF009589D9 /* tableViewCellClass */,
 				728999BA2053976900D87F79 /* ShopDetailViewController.swift */,
@@ -167,6 +174,8 @@
 				72327B9E2062197E005BB860 /* PayEditViewController.swift */,
 				72327BA020621992005BB860 /* EditViewController.swift */,
 				72354260202ECA860039E385 /* Main.storyboard */,
+				722DC910206FA56B007CB4EE /* ChatComeTableViewCell.swift */,
+				722DC90E206E2067007CB4EE /* OrderListTableViewCell.swift */,
 				72327BA220623585005BB860 /* EditDetailViewController.swift */,
 				729339C8205BA5C1009589D9 /* CartViewController.swift */,
 			);
@@ -346,13 +355,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				722CD5332067E67100DD6053 /* AcountEditViewController.swift in Sources */,
+				722DC911206FA56B007CB4EE /* ChatComeTableViewCell.swift in Sources */,
 				72327B9D206215C4005BB860 /* AkaMenuViewController.swift in Sources */,
 				728999B62052E26B00D87F79 /* TopViewController.swift in Sources */,
 				7251DC722045301400931022 /* SignUpViewController.swift in Sources */,
 				72379BAD2047BFF000809101 /* GirlMKPointAnnotation.swift in Sources */,
+				722DC90F206E2067007CB4EE /* OrderListTableViewCell.swift in Sources */,
 				72379BB520490E4700809101 /* ChatViewController.swift in Sources */,
 				729DB6172055115F0047834E /* ItemsTableViewCell.swift in Sources */,
 				72379BB320490E1C00809101 /* MsgListViewController.swift in Sources */,
+				72BFFC72206D239100AF97FE /* OrderCheckViewController.swift in Sources */,
 				729DB615205504230047834E /* ItemsViewController.swift in Sources */,
 				72379B8B2046459B00809101 /* ProfileEditViewController.swift in Sources */,
 				72327BA320623585005BB860 /* EditDetailViewController.swift in Sources */,

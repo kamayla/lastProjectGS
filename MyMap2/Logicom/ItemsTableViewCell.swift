@@ -61,7 +61,7 @@ class ItemsTableViewCell: UITableViewCell {
             plusButton.isEnabled = false
         }
         
-        itemNow = ["name" : name,"price" : price,"quantity" : selectedQuantity]
+        itemNow = ["name" : name,"price" : price,"quantity" : selectedQuantity,"shopID": OwnItemsViewController.shopID]
         var flag = true
         for n in 0..<OwnItemsViewController.willCart.count {
             if OwnItemsViewController.willCart[n]["name"] as! String  == name {

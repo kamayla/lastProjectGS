@@ -9,19 +9,26 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import CoreLocation
 
-class CartViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class CartViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate {
     
     //グローバル変数宣言
     var user: User!
+    var userName: String!
     var name: String!
     var price: Int!
     var quantity: Int!
+    var myPlace: String!
+    var shopID: String!
+    var shopPlace: String!
+    var shopName: String!
     var selectedQuantity = 0
     var cartNow = [[String : Any]]()
     var ref: DatabaseReference!
     var defaultStore : Firestore!
     let sendPay = 380
+    var contentsArray = [String: Any]()
     //グローバル変数宣言end
     
     //IBOutlet宣言
@@ -49,6 +56,7 @@ class CartViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 let array = child.value as! NSArray
                 for arrayChild in array {
                     var arrayChildDic = arrayChild as! [String : Any]
+                    self.shopID = arrayChildDic["shopID"] as! String
                     arrayChildDic.updateValue(child.key, forKey: "orderKey")
                     arrayChildDic.updateValue(self.user.uid, forKey: "userID")
                     arrayChildDic.updateValue(array.index(of: arrayChild), forKey: "indexNum")
@@ -56,6 +64,15 @@ class CartViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 }
             }
             
+            if self.cartNow.count == 0 {
+                self.dismiss(animated: true, completion: nil)
+            }
+            self.defaultStore.collection("shops").document(self.shopID).getDocument { (document, err) in
+                if let dic = document!.data() {
+                    self.shopPlace = dic["place"] as! String
+                    self.shopName = dic["name"] as! String
+                }
+            }
             self.cartTableView.reloadData()
         }
         
@@ -63,6 +80,17 @@ class CartViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         defaultStore.collection("UserProfile").document(user.uid).getDocument { (document, err) in
             if let dic = document!.data() {
                 self.sendArea.text = dic["address"] as? String
+                self.myPlace = dic["address"] as? String
+                self.userName = dic["name"] as? String
+            }
+        }
+        
+        defaultStore.collection("orders").document(user.uid).getDocument { (document, err) in
+            if let dic = document!.data() {
+                print(dic)
+            } else {
+                let order = self.defaultStore.collection("orders").document(self.user.uid)
+                order.setData([:])
             }
         }
     }
@@ -125,6 +153,44 @@ class CartViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     @IBAction func tappedClose(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-
+    @IBAction func tappedOrder(_ sender: Any) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(shopPlace, completionHandler: {(placemarks:[CLPlacemark]?, error: Error?) in
+            if let placemark = placemarks?[0] {
+                if let targetCoordinate = placemark.location?.coordinate{
+                    print(targetCoordinate)
+                    self.contentsArray = ["name": self.shopName,"latitude": targetCoordinate.latitude, "longitude": targetCoordinate.longitude]
+                    self.ref.child("usersPlace").child(self.shopID).setValue(self.contentsArray)
+                }
+            }
+        })
+        
+        let now = NSDate() // 現在日時の取得
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US") as Locale! // ロケールの設定
+        dateFormatter.dateFormat = "yyyyMMddHHmmss" // 日付フォーマットの設定
+        
+        print(dateFormatter.string(from: now as Date)) // -> 2014/06/25 02:13:18
+        
+        let date = dateFormatter.string(from: now as Date) + "\(user.uid)"
+        let order = self.defaultStore.collection("orders").document(user.uid)
+        var dic = [String:Any]()
+        var ArrayData = [date:[String:Any]()]
+        for i in 0..<cartNow.count {
+            dic.updateValue(cartNow[i],forKey: "\(i)")
+        }
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        let orderDate = dateFormatter.string(from: now as Date)
+        ArrayData.updateValue(["items":dic], forKey: date)
+        order.updateData(ArrayData)
+        order.updateData(["orderDate":orderDate])
+        order.updateData(["shopID":cartNow[0]["shopID"] as Any])
+        order.updateData(["orderKey":date])
+        order.updateData(["userID":cartNow[0]["userID"]])
+        
+        ref.child("carts").child(user.uid).removeValue()
+        ref.child("orderManager").child(cartNow[0]["shopID"] as! String).childByAutoId().setValue(["orderID":date])
+        self.dismiss(animated: true, completion: nil)
+    }
 }

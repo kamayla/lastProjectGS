@@ -137,14 +137,13 @@ class ChatViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChatComeTableViewCell
         
-        let name = cell.contentView.viewWithTag(1) as! UILabel
-        let msg = cell.contentView.viewWithTag(2) as! UILabel
+        cell.name.text = getMainArray[indexPath.row][0]
+        cell.msg.text = getMainArray[indexPath.row][1]
         
-//        name.text = getMainArray[indexPath.row][0]
         
-        msg.text = getMainArray[indexPath.row][1]
+
         
         //もし自分だったら右寄せ
 //        if getMainArray[indexPath.row][2] == "I" {
@@ -218,6 +217,9 @@ class ChatViewController: UIViewController, UITableViewDataSource {
     }
     
     
+    @IBAction func tappedClose(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     
     /*
